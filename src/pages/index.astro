@@ -1,6 +1,5 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "../layout/BaseLayout.astro";
 ---
 
 <html lang="en">
@@ -8,13 +7,11 @@ import Footer from "../components/Footer.astro";
     <title>White Coffee</title>
   </head>
   <body>
-    <Header />
-
-    <main>
-      <h1>White Coffee</h1>
-      <p>Drop by drop.</p>
-    </main>
-
-    <Footer />
+    <BaseLayout>
+      <section class="hero">
+        <h1>AWAKEN</h1>
+        <p>A collection built around quiet choices.</p>
+      </section>
+    </BaseLayout>
   </body>
 </html>

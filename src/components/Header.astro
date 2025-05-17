@@ -1,0 +1,69 @@
+<header class="header">
+  <a href="/" class="logo" aria-label="White Coffee logo">
+    <img src="/wc-logo.svg" alt="White Coffee logo" />
+  </a>
+
+  <nav class="nav">
+    <a href="/new">NEW IN</a>
+    <a href="/shop">SHOP</a>
+    <a href="/features">FEATURES</a>
+    <a href="/about">ABOUT</a>
+  </nav>
+
+  <div class="icons">
+    <img src="/icons/search.png" alt="Search icon" />
+    <img src="/icons/bag.png" alt="Cart icon" />
+  </div>
+</header>
+
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+
+    font-family: Helvetica, sans-serif;
+  }
+
+  .logo img {
+    height: 65px;
+    width: auto;
+  }
+
+  .nav {
+    display: flex;
+    gap: 4rem;
+    font-weight: bold;
+  }
+
+  .nav a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 0.83rem;
+    position: relative;
+  }
+
+  .icons img {
+    width: 25px;
+    margin-left: 3rem;
+    cursor: default;
+  }
+
+  a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+    transform-origin: left;
+  }
+
+  a:hover::after {
+    transform: scaleX(1);
+  }
+</style>
