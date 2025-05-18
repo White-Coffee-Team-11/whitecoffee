@@ -1,11 +1,11 @@
 <footer class="footer">
-  <div>
+  <div class="boring">
     <h4>SOCIALS:</h4>
     <p>FACEBOOK</p>
     <p>INSTAGRAM</p>
     <p>TIKTOK</p>
   </div>
-  <div>
+  <div class="boring">
     <h4>BORING STUFF:</h4>
     <p>PRIVACY</p>
     <p>REFUND</p>
@@ -24,9 +24,14 @@
   .footer {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding: 3rem;
     font-family: Helvetica, sans-serif;
     font-size: 0.83rem;
+  }
+
+  .boring {
+    margin-right: 50px;
   }
 
   .footer h4 {
