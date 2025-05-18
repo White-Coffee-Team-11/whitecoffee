@@ -1,0 +1,111 @@
+---
+
+---
+
+<section class="hero">
+  <picture>
+    <source srcset="/shirt-wc-mobile.webp" media="(max-width: 600px)" />
+    <img src="/shirt-wc.webp" alt="Awaken Shirt" class="hero-image" />
+  </picture>
+
+  <div class="hero-content">
+    <h1>AWAKEN</h1>
+    <p>A collection built around quiet choices.</p>
+    <button class="shop-button">SHOP HERE</button>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+  }
+
+  .hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-align: left;
+    padding: 3rem;
+    top: 45%;
+    transform: translateY(-40%);
+  }
+
+  h1 {
+    font-size: 5rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+    font-style: normal;
+    line-height: 30px;
+    font-weight: 200;
+  }
+
+  .shop-button {
+    background-color: rgba(255, 255, 255, 0.2); /* 60% hvid */
+    margin-top: 50px;
+    border-radius: 5px;
+    padding: 1.5rem 3rem;
+    font-family: Helvetica, sans-serif;
+    font-size: 1rem;
+    font-weight: 200;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  button {
+    border: 1px solid white;
+  }
+
+  button:hover {
+    border: 1px solid black;
+  }
+
+  .shop-button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+  }
+
+  @media (max-width: 840px) {
+    .hero-content {
+      text-align: center;
+      top: 10%;
+    }
+    h1 {
+      font-size: 3rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    button {
+      position: absolute;
+      text-align: center;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      top: 650px;
+    }
+  }
+</style>
