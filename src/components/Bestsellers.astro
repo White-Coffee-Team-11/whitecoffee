@@ -1,0 +1,101 @@
+---
+const products = [
+  {
+    name: "W LOGO CAP (BROWN)",
+    price: "400,00 kr",
+    image: "/caps/cap-brown.webp",
+  },
+  {
+    name: "W LOGO CAP (NAVY)",
+    price: "400,00 kr",
+    image: "/caps/cap-navy.webp",
+  },
+  {
+    name: "W LOGO CAP (REALTREE)",
+    price: "400,00 kr",
+    image: "/caps/cap-camo.webp",
+  },
+  {
+    name: "W LOGO CAP (BLACK)",
+    price: "400,00 kr",
+    image: "/caps/cap-black.webp",
+  },
+];
+---
+
+<section class="bestsellers">
+  <h2>BESTSELLERS:</h2>
+
+  <div class="product-grid">
+    {
+      products.map((product) => (
+        <div class="card">
+          <img src={product.image} alt={product.name} />
+          <div class="card-info">
+            <h3>{product.name}</h3>
+            <p>{product.price}</p>
+            <button>ADD TO CART</button>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .bestsellers {
+    padding: 4rem 3rem;
+    text-align: left;
+  }
+
+  .bestsellers h2 {
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .card {
+    padding: 0.5rem;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .card img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .card-info h3 {
+    font-size: 1rem;
+    margin: 1rem 0 0.25rem;
+  }
+
+  .card-info p {
+    margin: 0 0 1rem;
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 0.9rem;
+  }
+
+  .card-info button {
+    padding: 1rem 3rem;
+    width: 100%;
+    color: black;
+    border: 1px solid #000;
+    background: transparent;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .card-info button:hover {
+    background-color: rgb(232, 232, 232);
+  }
+</style>
