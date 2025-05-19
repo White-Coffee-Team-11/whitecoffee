@@ -33,19 +33,41 @@
   <a href="/about">ABOUT</a>
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector(".header");
+
+    if (!header) return;
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 80) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+  });
+</script>
+
 <style>
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 3rem;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 1000;
     font-family: Helvetica, sans-serif;
+    transition: background-color 0.3s ease;
+    background-color: transparent;
     box-sizing: border-box;
+  }
+
+  .header.scrolled {
+    background-color: white;
   }
 
   .logo img {
