@@ -1,0 +1,53 @@
+<section class="gallery">
+  <div class="grid">
+    <img src="/img/gallery1.webp" alt="Gallery image 1" />
+    <img src="/img/gallery2.webp" alt="Gallery image 2" />
+    <img src="/img/gallery3.webp" alt="Gallery image 3" />
+    <img src="/img/gallery4.webp" alt="Gallery image 4" />
+  </div>
+</section>
+
+<style>
+  .gallery {
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .grid img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  .grid img {
+    animation: fade-in-blur linear;
+    animation-timeline: view();
+    animation-range-start: 0px;
+    animation-range-end: 500px;
+  }
+
+  @keyframes fade-in-blur {
+    from {
+      scale: 0.8;
+      opacity: 0;
+    }
+    to {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 535px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

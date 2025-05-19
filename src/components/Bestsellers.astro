@@ -4,21 +4,25 @@ const products = [
     name: "W LOGO CAP (BROWN)",
     price: "400,00 kr",
     image: "/caps/cap-brown.webp",
+    hoverImage: "/caps/cap-brown-side.webp",
   },
   {
     name: "W LOGO CAP (NAVY)",
     price: "400,00 kr",
     image: "/caps/cap-navy.webp",
+    hoverImage: "/caps/cap-navy-side.webp",
   },
   {
     name: "W LOGO CAP (REALTREE)",
     price: "400,00 kr",
     image: "/caps/cap-camo.webp",
+    hoverImage: "/caps/cap-realtree-side.webp",
   },
   {
     name: "W LOGO CAP (BLACK)",
     price: "400,00 kr",
     image: "/caps/cap-black.webp",
+    hoverImage: "/caps/cap-black-side.webp",
   },
 ];
 ---
@@ -30,9 +34,14 @@ const products = [
     {
       products.map((product) => (
         <div class="card">
-          <img src={product.image} alt={product.name} />
+          <div class="image-wrapper">
+            <img src={product.image} alt={product.name} class="main-img" />
+            <img src={product.hoverImage} alt={`${product.name} side`} class="hover-img" />
+          </div>
           <div class="card-info">
-            <h3>{product.name}</h3>
+            <a href="#">
+              <h3>{product.name}</h3>
+            </a>
             <p>{product.price}</p>
             <button>ADD TO CART</button>
           </div>
@@ -44,8 +53,35 @@ const products = [
 
 <style>
   .bestsellers {
-    padding: 4rem 3rem;
+    padding: 8rem 3rem;
     text-align: left;
+    margin-bottom: 50px;
+  }
+
+  section.bestsellers {
+    animation: fade-in linear;
+    animation-timeline: view();
+    animation-range-start: 0px;
+    animation-range-end: 500px;
+  }
+
+  @keyframes fade-in {
+    from {
+      transform: translateY(400px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  a {
+    color: black;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 
   .bestsellers h2 {
@@ -60,10 +96,40 @@ const products = [
 
   .card {
     padding: 0.5rem;
+    max-width: 500px;
     background: #fff;
     display: flex;
     flex-direction: column;
     align-items: left;
+  }
+
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .image-wrapper .hover-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .image-wrapper:hover .hover-img {
+    opacity: 1;
+  }
+
+  .image-wrapper:hover .main-img {
+    opacity: 0;
   }
 
   .card img {
