@@ -1,0 +1,147 @@
+---
+// src/components/Insta.astro
+const posts = [
+  {
+    image: "/img/insta1.webp",
+    link: "https://www.instagram.com/p/DJi6Gurs9ZH/",
+  },
+  {
+    image: "/img/insta2.webp",
+    link: "https://www.instagram.com/p/DJYuLRdMJN8/",
+  },
+  {
+    image: "/img/insta3.webp",
+    link: "https://www.instagram.com/reel/DJTZGuOM5yN/",
+  },
+  {
+    image: "/img/insta4.webp",
+    link: "https://www.instagram.com/p/DJOp-UhMZ5Q/",
+  },
+  {
+    image: "/img/insta5.webp",
+    link: "https://www.instagram.com/reel/DJJFr7MM852/",
+  },
+  {
+    image: "/img/insta6.webp",
+    link: "https://www.instagram.com/reel/DJGecqrsUYt/",
+  },
+  {
+    image: "/img/insta7.webp",
+    link: "https://www.instagram.com/p/DJEZARiMBT4/",
+  },
+  {
+    image: "/img/insta8.webp",
+    link: "https://www.instagram.com/p/DJBh9JyMBdw/",
+  },
+  {
+    image: "/img/insta9.webp",
+    link: "https://www.instagram.com/p/DI5_2PFM4ar/",
+  },
+  {
+    image: "/img/insta10.webp",
+    link: "https://www.instagram.com/p/DIv5p3FMsP3/",
+  },
+  {
+    image: "/img/insta11.webp",
+    link: "https://www.instagram.com/p/DIrEybpigvR/",
+  },
+  {
+    image: "/img/insta12.webp",
+    link: "https://www.instagram.com/p/DIoF52UMZvP/",
+  },
+];
+---
+
+<section class="insta">
+  <div class="insta-flex">
+    <img src="/icons/insta.png" alt="insta" />
+    <a href="https://www.instagram.com/whitecoffee.xyz/" target="_blank">
+      <h2>whitecoffee.xyz</h2>
+    </a>
+  </div>
+  <div class="grid">
+    {
+      posts.map((post) => (
+        <a href={post.link} target="_blank" rel="noopener noreferrer">
+          <img src={post.image} alt="Instagram post" loading="lazy" />
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .insta {
+    text-align: center;
+  }
+
+  .insta-flex img {
+    width: 40px;
+  }
+
+  div.insta-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin-bottom: 80px;
+    margin-top: 200px;
+    gap: 20px;
+  }
+
+  .insta h2 {
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
+
+  a {
+    color: black;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.2rem;
+    padding: 1rem;
+  }
+
+  .grid {
+    animation: fade-in-blur linear;
+    animation-timeline: view();
+    animation-range-start: 0px;
+    animation-range-end: 300px;
+  }
+
+  @keyframes fade-in-blur {
+    from {
+      scale: 0.8;
+      opacity: 0;
+    }
+    to {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+
+  .grid a {
+    display: block;
+    aspect-ratio: 1 / 1; /* Kvadratisk forhold */
+    overflow: hidden;
+  }
+
+  .grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .grid a:hover img {
+    opacity: 0.3;
+    cursor: pointer;
+  }
+</style>
