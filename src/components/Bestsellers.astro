@@ -28,15 +28,20 @@ const products = [
 ---
 
 <section class="bestsellers">
-  <h2>BESTSELLERS:</h2>
+  <div class="products-flex">
+    <h2>BESTSELLERS:</h2>
+    <p>4 products</p>
+  </div>
 
   <div class="product-grid">
     {
       products.map((product) => (
         <div class="card">
           <div class="image-wrapper">
-            <img src={product.image} alt={product.name} class="main-img" />
-            <img src={product.hoverImage} alt={`${product.name} side`} class="hover-img" />
+            <a href="#">
+              <img src={product.image} alt={product.name} class="main-img" />
+              <img src={product.hoverImage} alt={`${product.name} side`} class="hover-img" />
+            </a>
           </div>
           <div class="card-info">
             <a href="#">
@@ -63,6 +68,19 @@ const products = [
     animation-timeline: view();
     animation-range-start: 0px;
     animation-range-end: 500px;
+  }
+
+  div.products-flex {
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+  }
+
+  .products-flex p {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+    font-size: 0.9rem;
   }
 
   @keyframes fade-in {
@@ -121,7 +139,6 @@ const products = [
     top: 0;
     left: 0;
     opacity: 0;
-    cursor: pointer;
   }
 
   .image-wrapper:hover .hover-img {
@@ -163,5 +180,11 @@ const products = [
 
   .card-info button:hover {
     background-color: rgb(232, 232, 232);
+  }
+
+  @media (max-width: 840px) {
+    div.products-flex {
+      flex-wrap: wrap;
+    }
   }
 </style>

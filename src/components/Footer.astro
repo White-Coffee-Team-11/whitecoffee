@@ -1,16 +1,16 @@
 <footer class="footer">
   <div class="boring">
     <h4>SOCIALS:</h4>
-    <p>FACEBOOK</p>
-    <p>INSTAGRAM</p>
-    <p>TIKTOK</p>
+    <a href="https://www.facebook.com/profile.php?id=61572898013180" target="_blank">FACEBOOK</a>
+    <a href="https://www.instagram.com/whitecoffee.xyz/" target="_blank">INSTAGRAM</a>
+    <a href="https://www.tiktok.com/@whitecoffee.xyz" target="_blank">TIKTOK</a>
   </div>
   <div class="boring">
     <h4>BORING STUFF:</h4>
-    <p>PRIVACY</p>
-    <p>REFUND</p>
-    <p>SHIPPING</p>
-    <p>TERMS</p>
+    <a href="#">PRIVACY</a>
+    <a href="#">REFUND</a>
+    <a href="#">SHIPPING</a>
+    <a href="#">TERMS</a>
   </div>
   <div>
     <h4>CONTACT:</h4>
@@ -52,9 +52,25 @@
     margin-right: 50px;
   }
 
+  .boring {
+    display: flex;
+    flex-direction: column;
+  }
+
   .footer h4 {
     margin-bottom: 1rem;
     line-height: 65px;
+  }
+
+  .footer a {
+    margin: 0.2rem 0;
+    color: rgba(0, 0, 0, 0.75);
+    font-weight: 600;
+    line-height: 35px;
+  }
+
+  .footer a:hover {
+    color: black;
   }
 
   .footer p {
