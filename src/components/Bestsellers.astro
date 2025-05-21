@@ -1,53 +1,30 @@
 ---
-const products = [
-  {
-    name: "W LOGO CAP (BROWN)",
-    price: "400,00 kr",
-    image: "/caps/cap-brown.webp",
-    hoverImage: "/caps/cap-brown-side.webp",
+const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1aGl2anR0bm5ubWpzYnducmNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3OTczNTUsImV4cCI6MjA2MzM3MzM1NX0.x_2Eu1hHj-x_7TacO5SopIqOrc8030A1NXhpY8GeL2k";
+const res = await fetch("https://fuhivjttnnnmjsbwnrcn.supabase.co/rest/v1/bestseller_products", {
+  headers: {
+    apikey: key,
+    Authorization: `Bearer ${key}`,
   },
-  {
-    name: "W LOGO CAP (NAVY)",
-    price: "400,00 kr",
-    image: "/caps/cap-navy.webp",
-    hoverImage: "/caps/cap-navy-side.webp",
-  },
-  {
-    name: "W LOGO CAP (REALTREE)",
-    price: "400,00 kr",
-    image: "/caps/cap-camo.webp",
-    hoverImage: "/caps/cap-realtree-side.webp",
-  },
-  {
-    name: "W LOGO CAP (BLACK)",
-    price: "400,00 kr",
-    image: "/caps/cap-black.webp",
-    hoverImage: "/caps/cap-black-side.webp",
-  },
-];
+});
+const products = await res.json();
 ---
 
 <section class="bestsellers">
-  <div class="products-flex">
-    <h2>BESTSELLERS:</h2>
-    <p>4 products</p>
-  </div>
-
   <div class="product-grid">
     {
-      products.map((product) => (
+      (products as any[]).map((product) => (
         <div class="card">
           <div class="image-wrapper">
             <a href="#">
               <img src={product.image} alt={product.name} class="main-img" />
-              <img src={product.hoverImage} alt={`${product.name} side`} class="hover-img" />
+              <img src={product.hoverimage} alt={`${product.name} side`} class="hover-img" />
             </a>
           </div>
           <div class="card-info">
             <a href="#">
               <h3>{product.name}</h3>
             </a>
-            <p>{product.price}</p>
+            <p>{product.price},00 kr</p>
             <button>ADD TO CART</button>
           </div>
         </div>
