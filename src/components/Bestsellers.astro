@@ -1,28 +1,38 @@
 ---
+const url = "https://fuhivjttnnnmjsbwnrcn.supabase.co/rest/v1/alsolike_products";
 const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1aGl2anR0bm5ubWpzYnducmNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3OTczNTUsImV4cCI6MjA2MzM3MzM1NX0.x_2Eu1hHj-x_7TacO5SopIqOrc8030A1NXhpY8GeL2k";
-const res = await fetch("https://fuhivjttnnnmjsbwnrcn.supabase.co/rest/v1/bestseller_products", {
+
+const options = {
   headers: {
     apikey: key,
-    Authorization: `Bearer ${key}`,
   },
-});
-const products = await res.json();
+};
+
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  hoverimage: string;
+};
+
+const data: Product[] = await fetch(url, options).then((res) => res.json());
 ---
 
 <section class="bestsellers">
   <h2>BESTSELLERS:</h2>
   <div class="product-grid">
     {
-      (products as any[]).map((product) => (
+      data.slice(4, 8).map((product) => (
         <div class="card">
           <div class="image-wrapper">
-            <a href={`/product?id=${product.id}`}>
+            <a href={`/product/${product.id}`}>
               <img src={product.image} alt={product.name} class="main-img" />
               <img src={product.hoverimage} alt={`${product.name} side`} class="hover-img" />
             </a>
           </div>
           <div class="card-info">
-            <a href={`/product?id=${product.id}`}>
+            <a href={`/product/${product.id}`}>
               <h3>{product.name}</h3>
             </a>
             <p>{product.price},00 kr</p>
