@@ -1,0 +1,174 @@
+---
+const key =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1aGl2anR0bm5ubWpzYnducmNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3OTczNTUsImV4cCI6MjA2MzM3MzM1NX0.x_2Eu1hHj-x_7TacO5SopIqOrc8030A1NXhpY8GeL2k";
+
+const res = await fetch("https://fuhivjttnnnmjsbwnrcn.supabase.co/rest/v1/bestseller_products", {
+  method: "GET",
+  headers: {
+    apikey: key,
+    Authorization: `Bearer ${key}`,
+  },
+});
+
+const products = await res.json();
+
+// Gentag produkterne og trim til 50
+const repeatedProducts = Array.from({ length: 50 }, (_, i) => products[i % products.length]);
+---
+
+<section class="bestsellers">
+  <h2>COLLECTION</h2>
+  <div class="product-grid">
+    {
+      repeatedProducts.map((product) => (
+        <div class="card">
+          <div class="image-wrapper">
+            <a href={`/product?id=${product.id}`}>
+              <img src={product.image} alt={product.name} class="main-img" />
+              <img src={product.hoverimage} alt={`${product.name} side`} class="hover-img" />
+            </a>
+          </div>
+          <div class="card-info">
+            <a href={`/product?id=${product.id}`}>
+              <h3>{product.name}</h3>
+            </a>
+            <p>{product.price},00 kr</p>
+            <button>ADD TO CART</button>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .bestsellers {
+    padding: 8rem 3rem;
+    text-align: left;
+    margin-bottom: 50px;
+  }
+
+  section.bestsellers {
+    animation: fade-in linear;
+    animation-timeline: view();
+    animation-range-start: 0px;
+    animation-range-end: 500px;
+  }
+
+  div.products-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .products-flex p {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  @keyframes fade-in {
+    from {
+      transform: translateY(400px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  a {
+    color: black;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .bestsellers h2 {
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .card {
+    padding: 0.5rem;
+    max-width: 500px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .image-wrapper .hover-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  .image-wrapper:hover .hover-img {
+    opacity: 1;
+  }
+
+  .image-wrapper:hover .main-img {
+    opacity: 0;
+  }
+
+  .card img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .card-info h3 {
+    font-size: 1rem;
+    margin: 1rem 0 0.25rem;
+  }
+
+  .card-info p {
+    margin: 0 0 1rem;
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 0.9rem;
+  }
+
+  .card-info button {
+    padding: 1rem 3rem;
+    width: 100%;
+    color: black;
+    border: 1px solid #000;
+    background: transparent;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .card-info button:hover {
+    background-color: rgb(232, 232, 232);
+  }
+
+  @media (max-width: 840px) {
+    div.products-flex {
+      flex-wrap: wrap;
+    }
+  }
+</style>
