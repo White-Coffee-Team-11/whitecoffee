@@ -1,0 +1,156 @@
+---
+export const prerender = false;
+import BaseLayout from "../../layout/BaseLayout.astro";
+import Alsolike from "../../components/Alsolike.astro";
+
+const { params } = Astro;
+
+const url = `https://fuhivjttnnnmjsbwnrcn.supabase.co/rest/v1/alsolike_products?id=eq.${params.id}`;
+const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1aGl2anR0bm5ubWpzYnducmNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3OTczNTUsImV4cCI6MjA2MzM3MzM1NX0.x_2Eu1hHj-x_7TacO5SopIqOrc8030A1NXhpY8GeL2k";
+
+const options = {
+  headers: {
+    apikey: key,
+  },
+};
+
+const data = await fetch(url, options).then((res) => res.json());
+const product = data[0]; // fordi det returnerer et array
+---
+
+<BaseLayout>
+  {
+    product ? (
+      <section class="single-product">
+        <div class="image">
+          <img src={product.image} alt={product.name} />
+        </div>
+        <div class="info">
+          <h1>{product.name}</h1>
+          <p>{product.price},00 kr</p>
+          <select id="size" name="size">
+            <option disabled selected>
+              Size
+            </option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+          <button>ADD TO CART</button>
+          <ul class="description">
+            <li>• 100% cotton</li>
+            <li>• Red signature necktag and hangtag</li>
+            <li>• Boxy fitment</li>
+          </ul>
+        </div>
+      </section>
+    ) : (
+      <p>Produkt ikke fundet</p>
+    )
+  }
+  <Alsolike />
+</BaseLayout>
+
+<style>
+  .single-product {
+    display: flex;
+    gap: 4rem;
+    padding: 3rem;
+    text-align: left;
+    margin-top: 5rem;
+    align-items: center;
+  }
+
+  .image img {
+    max-width: 700px;
+    width: 100%;
+    height: auto;
+    align-self: center;
+  }
+
+  select#size {
+    border: none;
+    border-bottom: 1px solid black;
+  }
+
+  select[data-astro-cid-b6xca4jq] {
+    margin-bottom: 5rem;
+    margin-top: 3rem;
+    padding: 1rem;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  div.info {
+    width: 40%;
+    max-width: 700px;
+  }
+
+  .info h1 {
+    font-size: 2.5vw;
+    margin-bottom: 1rem;
+  }
+
+  .info p {
+    font-weight: normal;
+    margin-bottom: 5rem;
+    margin-top: 1rem;
+  }
+
+  select {
+    margin-bottom: 4rem;
+    padding: 0.5rem;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 1rem 2rem;
+    width: 100%;
+    color: black;
+    border: 1px solid #000;
+    background: transparent;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: rgb(232, 232, 232);
+  }
+
+  .description {
+    list-style: none;
+    margin-top: 2rem;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.75);
+  }
+
+  .description li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 840px) {
+    .single-product {
+      flex-direction: column;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    div.info {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .image img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .info h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
