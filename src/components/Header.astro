@@ -24,6 +24,12 @@
       <img src="/icons/bag.png" alt="Cart icon" />
     </a>
   </div>
+
+  <div id="cart-popup" class="cart-popup hidden">
+    <h3>CARD:</h3>
+    <ul id="cart-items"></ul>
+    <button id="close-cart">Close</button>
+  </div>
 </header>
 
 <div class="mobile-menu">
@@ -33,7 +39,7 @@
   <a href="/about">ABOUT</a>
 </div>
 
-<script>
+<script is:inline lang="ts">
   document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector(".header");
 
@@ -46,6 +52,76 @@
         header.classList.remove("scrolled");
       }
     });
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector(".header");
+    const cartIcon = document.querySelector('.icons a[href="#"] img[alt="Cart icon"]');
+    const cartPopup = document.getElementById("cart-popup");
+    const closeBtn = document.getElementById("close-cart");
+    const cartItems = document.getElementById("cart-items");
+
+    const cart = [];
+
+    window.addToCart = function (product) {
+      cart.push(product);
+      renderCart();
+      cartPopup.classList.remove("hidden");
+    };
+
+    function renderCart() {
+      if (!cartItems) return;
+
+      cartItems.innerHTML = "";
+
+      if (cart.length === 0) {
+        const emptyMsg = document.createElement("p");
+        emptyMsg.textContent = "Your cart is empty";
+        emptyMsg.style.textAlign = "center";
+        emptyMsg.style.marginTop = "4rem";
+        cartItems.appendChild(emptyMsg);
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const li = document.createElement("li");
+
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "–";
+        removeBtn.style.marginRight = "10px";
+        removeBtn.style.cursor = "pointer";
+        removeBtn.style.border = "none";
+        removeBtn.style.backgroundColor = "white";
+
+        removeBtn.onclick = () => {
+          cart.splice(index, 1);
+          renderCart();
+        };
+
+        li.textContent = `${item.name} – ${item.price},00 kr`;
+        li.prepend(removeBtn);
+        cartItems.appendChild(li);
+      });
+    }
+
+    if (cartIcon && cartPopup) {
+      cartIcon.addEventListener("click", (e) => {
+        e.preventDefault();
+        cartPopup.classList.toggle("hidden");
+      });
+    }
+
+    if (closeBtn && cartPopup) {
+      closeBtn.addEventListener("click", () => {
+        cartPopup.classList.add("hidden");
+      });
+    }
+
+    if (header) {
+      window.addEventListener("scroll", () => {
+        header.classList.toggle("scrolled", window.scrollY > 80);
+      });
+    }
   });
 </script>
 
@@ -197,5 +273,46 @@
     .mobile-menu.active {
       display: flex;
     }
+  }
+
+  .cart-popup {
+    position: fixed;
+    right: 0rem;
+    top: 80px;
+    background: white;
+    border: 1px solid #ffffff;
+    padding: 1rem;
+    z-index: 999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-popup.hidden {
+    display: none;
+  }
+  .cart-popup ul {
+    list-style: none;
+    padding: 0;
+  }
+  .cart-popup li {
+    margin-bottom: 0.5rem;
+  }
+
+  button#close-cart {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+
+    margin-top: auto;
+    align-self: flex-start; /* Hvis du vil holde den venstrestillet */
+  }
+  button {
+    padding: 0;
+  }
+
+  button:hover {
+    color: rgb(73, 72, 72);
   }
 </style>
