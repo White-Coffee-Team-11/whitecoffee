@@ -36,7 +36,7 @@ const product = data[0]; // fordi det returnerer et array
             <option>M</option>
             <option>L</option>
           </select>
-          <button>ADD TO CART</button>
+          <button onclick={`addToCart({ id: ${product.id}, name: '${product.name}', price: ${product.price} })`}>ADD TO CART</button>
           <ul class="description">
             <li>• 100% cotton</li>
             <li>• Red signature necktag and hangtag</li>
