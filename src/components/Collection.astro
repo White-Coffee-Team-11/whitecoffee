@@ -1,8 +1,16 @@
 ---
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  hoverimage: string;
+};
+
 const key =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1aGl2anR0bm5ubWpzYnducmNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3OTczNTUsImV4cCI6MjA2MzM3MzM1NX0.x_2Eu1hHj-x_7TacO5SopIqOrc8030A1NXhpY8GeL2k";
 
-const res = await fetch("https://fuhivjttnnnmjsbwnrcn.supabase.co/rest/v1/bestseller_products", {
+const res = await fetch("https://fuhivjttnnnmjsbwnrcn.supabase.co/rest/v1/alsolike_products", {
   method: "GET",
   headers: {
     apikey: key,
@@ -10,10 +18,11 @@ const res = await fetch("https://fuhivjttnnnmjsbwnrcn.supabase.co/rest/v1/bestse
   },
 });
 
-const products = await res.json();
+const products: Product[] = await res.json();
 
-// Gentag produkterne og trim til 50
-const repeatedProducts = Array.from({ length: 50 }, (_, i) => products[i % products.length]);
+const filtered = products.filter((p) => p.id >= 0 && p.id <= 4);
+
+const repeatedProducts = Array.from({ length: 50 }, (_, i) => filtered[i % filtered.length]);
 ---
 
 <section class="bestsellers">
@@ -93,7 +102,8 @@ const repeatedProducts = Array.from({ length: 50 }, (_, i) => products[i % produ
 
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
   }
 
   .card {
