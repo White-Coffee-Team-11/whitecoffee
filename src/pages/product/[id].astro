@@ -15,39 +15,74 @@ const options = {
 };
 
 const data = await fetch(url, options).then((res) => res.json());
-const product = data[0]; // fordi det returnerer et array
+const product = data[0];
 ---
+
+<script is:inline>
+  let showingHover = false;
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const mainImg = document.getElementById("main-img");
+    const hoverImg = document.getElementById("hover-img");
+    const arrows = document.querySelectorAll(".arrow");
+
+    if (!mainImg || !hoverImg || !arrows.length) return;
+
+    arrows.forEach((arrow) => {
+      arrow.addEventListener("click", () => {
+        mainImg.classList.toggle("hide");
+        hoverImg.classList.toggle("show");
+        showingHover = !showingHover;
+      });
+    });
+  });
+</script>
+
 
 <BaseLayout>
   {
     product ? (
-      <section class="single-product">
-        <div class="image">
-          <img src={product.image} alt={product.name} />
-        </div>
-        <div class="info">
-          <h1>{product.name}</h1>
-          <p>{product.price},00 kr</p>
-          <select id="size" name="size">
-            <option disabled selected>
-              Size
-            </option>
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-          </select>
-          <button onclick={`addToCart({ id: ${product.id}, name: '${product.name}', price: ${product.price} })`}>ADD TO CART</button>
-          <ul class="description">
-            <li>• 100% cotton</li>
-            <li>• Red signature necktag and hangtag</li>
-            <li>• Boxy fitment</li>
-          </ul>
-        </div>
-      </section>
+<section class="single-product">
+  <div class="image">
+    <img id="main-img" src={product.image} alt={product.name} />
+    <img id="hover-img" src={product.hoverimage} alt={`${product.name} side`} class="hidden" />
+
+    <button class="arrow left" onclick="toggleImage()">
+      <img src="/icons/arrow-left.webp" alt="Previous" />
+    </button>
+    <button class="arrow right" onclick="toggleImage()">
+      <img src="/icons/arrow-right.webp" alt="Next" />
+    </button>
+  </div> <!-- 👈 luk denne her -->
+
+  <div class="info">
+    <h1>{product.name}</h1>
+    <p>{product.price},00 kr</p>
+
+    <select id="size" name="size">
+      <option disabled selected>Size</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+    </select>
+
+    <button onclick={`addToCart({ id: ${product.id}, name: '${product.name}', price: ${product.price} })`}>
+      ADD TO CART
+    </button>
+
+    <ul class="description">
+      <li>• 100% cotton</li>
+      <li>• Red signature necktag and hangtag</li>
+      <li>• Boxy fitment</li>
+    </ul>
+  </div>
+</section>
+
     ) : (
       <p>Produkt ikke fundet</p>
     )
   }
+
   <Alsolike />
 </BaseLayout>
 
@@ -61,12 +96,7 @@ const product = data[0]; // fordi det returnerer et array
     align-items: center;
   }
 
-  .image img {
-    max-width: 700px;
-    width: 100%;
-    height: auto;
-    align-self: center;
-  }
+
 
   select#size {
     border: none;
@@ -153,4 +183,72 @@ const product = data[0]; // fordi det returnerer et array
       font-size: 2rem;
     }
   }
+
+.image {
+  position: relative;
+}
+
+.image img {
+  max-width: 700px;
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#hover-img.show {
+  opacity: 1;
+}
+
+#main-img.hide {
+  opacity: 0;
+}
+
+
+  .arrow {
+    position: absolute;
+    top: 95%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    opacity: 0.8;
+  }
+
+  .arrow img {
+    height: 25px;
+    width: 25px;
+  }
+
+   .arrow img:hover {
+    height: 30px;
+    width: 30px;
+  }
+
+  button.arrow.left {
+    left: 270px;
+    padding: 0px;
+    width: 0px;
+
+  }
+
+  button.arrow.right {
+    right: 300px;
+    padding: 0px;
+    width: 0px;
+  }
 </style>
+
+
+
+
