@@ -48,10 +48,10 @@ const product = data[0];
     <img id="hover-img" src={product.hoverimage} alt={`${product.name} side`} class="hidden" />
 
     <button class="arrow left" onclick="toggleImage()">
-      <img src="/icons/arrow-left.webp" alt="Previous" />
+      <img src="/icons/arrow-right.webp" alt="Previous" />
     </button>
     <button class="arrow right" onclick="toggleImage()">
-      <img src="/icons/arrow-right.webp" alt="Next" />
+      <img src="/icons/arrow-left.webp" alt="Next" />
     </button>
   </div> <!-- 👈 luk denne her -->
 
@@ -216,9 +216,12 @@ const product = data[0];
 
   .arrow {
     position: absolute;
-    top: 95%;
-    transform: translateY(-50%);
-    background: white;
+    top: 90%;
+      left: 47%;
+      gap: 8rem;
+
+      transform: translateX(-50%);
+      text-align: center;
     border: none;
     cursor: pointer;
     padding: 0.5rem;
@@ -228,23 +231,22 @@ const product = data[0];
   .arrow img {
     height: 25px;
     width: 25px;
+
   }
 
-   .arrow img:hover {
-    height: 30px;
-    width: 30px;
-  }
+
 
   button.arrow.left {
-    left: 270px;
-    padding: 0px;
+padding-left: 100px;
     width: 0px;
 
   }
+    button.arrow:hover {
+    background-color: rgba(255, 255, 255, 0);
+  }
 
   button.arrow.right {
-    right: 300px;
-    padding: 0px;
+padding-right: 100px;
     width: 0px;
   }
 </style>
