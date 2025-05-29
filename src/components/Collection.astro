@@ -7,8 +7,7 @@ type Product = {
   hoverimage: string;
 };
 
-const key =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1aGl2anR0bm5ubWpzYnducmNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3OTczNTUsImV4cCI6MjA2MzM3MzM1NX0.x_2Eu1hHj-x_7TacO5SopIqOrc8030A1NXhpY8GeL2k";
+const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1aGl2anR0bm5ubWpzYnducmNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc3OTczNTUsImV4cCI6MjA2MzM3MzM1NX0.x_2Eu1hHj-x_7TacO5SopIqOrc8030A1NXhpY8GeL2k";
 
 const res = await fetch("https://fuhivjttnnnmjsbwnrcn.supabase.co/rest/v1/alsolike_products", {
   method: "GET",
@@ -22,7 +21,7 @@ const products: Product[] = await res.json();
 
 const filtered = products.filter((p) => p.id >= 0 && p.id <= 4);
 
-const repeatedProducts = Array.from({ length: 50 }, (_, i) => filtered[i % filtered.length]);
+const repeatedProducts = Array.from({ length: 20 }, (_, i) => filtered[i % filtered.length]);
 ---
 
 <section class="bestsellers">
@@ -32,13 +31,13 @@ const repeatedProducts = Array.from({ length: 50 }, (_, i) => filtered[i % filte
       repeatedProducts.map((product) => (
         <div class="card">
           <div class="image-wrapper">
-            <a href={`/product?id=${product.id}`}>
+            <a href={`/product/${product.id}`}>
               <img src={product.image} alt={product.name} class="main-img" />
               <img src={product.hoverimage} alt={`${product.name} side`} class="hover-img" />
             </a>
           </div>
           <div class="card-info">
-            <a href={`/product?id=${product.id}`}>
+            <a href={`/product/${product.id}`}>
               <h3>{product.name}</h3>
             </a>
             <p>{product.price},00 kr</p>
@@ -103,7 +102,7 @@ const repeatedProducts = Array.from({ length: 50 }, (_, i) => filtered[i % filte
   .product-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    gap: 0rem;
   }
 
   .card {
