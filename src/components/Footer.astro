@@ -30,11 +30,13 @@
     font-size: 0.83rem;
   }
 
-  footer {
-    animation: fade-in linear;
-    animation-timeline: view();
-    animation-range-start: 0px;
-    animation-range-end: 300px;
+  @supports (animation-timeline: view()) {
+    footer {
+      animation: fade-in linear;
+      animation-timeline: view();
+      animation-range-start: 0px;
+      animation-range-end: 400px;
+    }
   }
 
   @keyframes fade-in {
