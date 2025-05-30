@@ -17,7 +17,7 @@
   .intro {
     display: flex;
     flex-direction: column;
-    padding: 2rem 1rem;
+    padding: 2rem 3rem;
     max-width: 1200px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -29,16 +29,18 @@
   }
 
   .title {
-    font-size: 6rem;
+    font-size: 5rem;
     font-weight: 800;
     margin-bottom: 1rem;
   }
 
-  section.intro {
-    animation: fade-in linear;
-    animation-timeline: view();
-    animation-range-start: 0px;
-    animation-range-end: 400px;
+  @supports (animation-timeline: view()) {
+    section.intro {
+      animation: fade-in linear;
+      animation-timeline: view();
+      animation-range-start: 0px;
+      animation-range-end: 400px;
+    }
   }
 
   @keyframes fade-in {
