@@ -21,7 +21,7 @@ const product = data[0];
 <script is:inline>
   let showingHover = false;
 
-  window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener("DOMContentLoaded", () => {
     const mainImg = document.getElementById("main-img");
     const hoverImg = document.getElementById("hover-img");
     const arrows = document.querySelectorAll(".arrow");
@@ -38,46 +38,44 @@ const product = data[0];
   });
 </script>
 
-
 <BaseLayout>
   {
     product ? (
-<section class="single-product">
-  <div class="image">
-    <img id="main-img" src={product.image} alt={product.name} />
-    <img id="hover-img" src={product.hoverimage} alt={`${product.name} side`} class="hidden" />
+      <section class="single-product">
+        <div class="image">
+          <img id="main-img" src={product.image} alt={product.name} />
+          <img id="hover-img" src={product.hoverimage} alt={`${product.name} side`} class="hidden" />
 
-    <button class="arrow left" >
-      <img src="/icons/arrow-right.webp" alt="Previous" />
-    </button>
-    <button class="arrow right" >
-      <img src="/icons/arrow-left.webp" alt="Next" />
-    </button>
-  </div> <!-- 👈 luk denne her -->
+          <button class="arrow left">
+            <img src="/icons/arrow-right.webp" alt="Previous" />
+          </button>
+          <button class="arrow right">
+            <img src="/icons/arrow-left.webp" alt="Next" />
+          </button>
+        </div>
 
-  <div class="info">
-    <h1>{product.name}</h1>
-    <p>{product.price},00 kr</p>
+        <div class="info">
+          <h1>{product.name}</h1>
+          <p>{product.price},00 kr</p>
 
-    <select id="size" name="size">
-      <option disabled selected>Size</option>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-    </select>
+          <select id="size" name="size">
+            <option disabled selected>
+              Size
+            </option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
 
-    <button onclick={`addToCart({ id: ${product.id}, name: '${product.name}', price: ${product.price} })`}>
-      ADD TO CART
-    </button>
+          <button onclick={`addToCart({ id: ${product.id}, name: '${product.name}', price: ${product.price} })`}>ADD TO CART</button>
 
-    <ul class="description">
-      <li>• 100% cotton</li>
-      <li>• Red signature necktag and hangtag</li>
-      <li>• Boxy fitment</li>
-    </ul>
-  </div>
-</section>
-
+          <ul class="description">
+            <li>• 100% cotton</li>
+            <li>• Red signature necktag and hangtag</li>
+            <li>• Boxy fitment</li>
+          </ul>
+        </div>
+      </section>
     ) : (
       <p>Produkt ikke fundet</p>
     )
@@ -95,8 +93,6 @@ const product = data[0];
     margin-top: 5rem;
     align-items: center;
   }
-
-
 
   select#size {
     border: none;
@@ -184,44 +180,43 @@ const product = data[0];
     }
   }
 
-.image {
-  position: relative;
-}
+  .image {
+    position: relative;
+  }
 
-.image img {
-  max-width: 700px;
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: opacity 0.3s ease-in-out;
-}
-
-#hover-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  pointer-events: none;
+  .image img {
+    max-width: 700px;
+    width: 100%;
+    height: auto;
+    display: block;
     transition: opacity 0.3s ease-in-out;
-}
+  }
 
-#hover-img.show {
-  opacity: 1;
-}
+  #hover-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+  }
 
-#main-img.hide {
-  opacity: 0;
-}
+  #hover-img.show {
+    opacity: 1;
+  }
 
+  #main-img.hide {
+    opacity: 0;
+  }
 
   .arrow {
     position: absolute;
     top: 90%;
-      left: 47%;
-      gap: 8rem;
+    left: 47%;
+    gap: 8rem;
 
-      transform: translateX(-50%);
-      text-align: center;
+    transform: translateX(-50%);
+    text-align: center;
     border: none;
     cursor: pointer;
     padding: 0.5rem;
@@ -231,29 +226,19 @@ const product = data[0];
   .arrow img {
     height: 25px;
     width: 25px;
-
   }
-
-
 
   button.arrow.left {
-padding-left: 100px;
+    padding-left: 100px;
     width: 0px;
-
   }
-    button.arrow:hover {
+  button.arrow:hover {
     background-color: rgba(255, 255, 255, 0);
-        filter: drop-shadow(0 0 3px rgba(213, 213, 213, 0.749));
+    filter: drop-shadow(0 0 3px rgba(213, 213, 213, 0.749));
   }
-
-
 
   button.arrow.right {
-padding-right: 100px;
+    padding-right: 100px;
     width: 0px;
   }
 </style>
-
-
-
-

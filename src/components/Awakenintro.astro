@@ -34,26 +34,6 @@
     margin-bottom: 1rem;
   }
 
-  @supports (animation-timeline: view()) {
-    section.intro {
-      animation: fade-in linear;
-      animation-timeline: view();
-      animation-range-start: 0px;
-      animation-range-end: 400px;
-    }
-  }
-
-  @keyframes fade-in {
-    from {
-      transform: translateY(200px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
   .subtitle {
     font-size: 1.5rem;
     color: #111;
