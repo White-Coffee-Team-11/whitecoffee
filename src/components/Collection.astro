@@ -56,15 +56,6 @@ const repeatedProducts = Array.from({ length: 20 }, (_, i) => filtered[i % filte
     margin-bottom: 50px;
   }
 
-  @supports (animation-timeline: view()) {
-    section.bestsellers {
-      animation: fade-in linear;
-      animation-timeline: view();
-      animation-range-start: 0px;
-      animation-range-end: 400px;
-    }
-  }
-
   div.products-flex {
     display: flex;
     justify-content: space-between;
@@ -75,17 +66,6 @@ const repeatedProducts = Array.from({ length: 20 }, (_, i) => filtered[i % filte
     color: rgba(0, 0, 0, 0.7);
     font-weight: 500;
     font-size: 0.9rem;
-  }
-
-  @keyframes fade-in {
-    from {
-      transform: translateY(400px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
   }
 
   a {
