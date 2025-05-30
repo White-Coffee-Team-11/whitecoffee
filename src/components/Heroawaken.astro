@@ -3,9 +3,13 @@
 ---
 
 <section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="/public/video/AWAKENFINAL.mp4" type="video/mp4" />
+  <video id="heroVideo" class="hero-video" autoplay playsinline loop>
+    <source src="/video/AWAKENFINAL.mp4" type="video/mp4" />
   </video>
+
+  <button id="muteToggle">
+    <img id="muteIcon" src="/icons/play.webp" alt="toggle sound" />
+  </button>
 </section>
 
 <style>
@@ -24,4 +28,40 @@
     height: 100%;
     object-fit: cover;
   }
+
+  #muteToggle {
+    position: absolute;
+    bottom: 1rem;
+    right: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  #muteToggle img {
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: filter 0.1s ease;
+  }
+
+  #muteToggle:hover img {
+    filter: drop-shadow(0 0 3px rgba(213, 213, 213, 0.749));
+    transform: scale(1.1);
+  }
 </style>
+
+<script>
+  const video = document.getElementById("heroVideo") as HTMLVideoElement | null;
+  const muteBtn = document.getElementById("muteToggle") as HTMLButtonElement | null;
+  const muteIcon = document.getElementById("muteIcon") as HTMLImageElement | null;
+
+  if (video && muteBtn && muteIcon) {
+    video.muted = false; // start med lyd
+
+    muteBtn.addEventListener("click", () => {
+      video.muted = !video.muted;
+      muteIcon.src = video.muted ? "/icons/muted.webp" : "/icons/play.webp";
+    });
+  }
+</script>

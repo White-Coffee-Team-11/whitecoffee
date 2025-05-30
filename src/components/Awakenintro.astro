@@ -20,6 +20,7 @@
     padding: 2rem 1rem;
     max-width: 1200px;
     margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .column {
@@ -31,6 +32,24 @@
     font-size: 6rem;
     font-weight: 800;
     margin-bottom: 1rem;
+  }
+
+  section.intro {
+    animation: fade-in linear;
+    animation-timeline: view();
+    animation-range-start: 0px;
+    animation-range-end: 400px;
+  }
+
+  @keyframes fade-in {
+    from {
+      transform: translateY(200px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   .subtitle {
@@ -61,6 +80,21 @@
 
     .right {
       padding-left: 1rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    h2.title {
+      font-size: 3rem;
+      word-break: break-word;
+    }
+
+    .intro p {
+      font-size: 1rem;
+    }
+
+    .intro {
+      padding: 1.5rem 1rem;
     }
   }
 </style>
