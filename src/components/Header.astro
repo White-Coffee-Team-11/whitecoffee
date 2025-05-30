@@ -12,7 +12,7 @@
   <nav class="nav">
     <a href="/campaign">NEW IN</a>
     <a href="/campaign">SHOP</a>
-    <a href="/features">FEATURES</a>
+    <a href="/development">FEATURES</a>
     <a href="/about">ABOUT</a>
   </nav>
 
@@ -23,6 +23,10 @@
     <a href="#">
       <img src="/icons/bag.png" alt="Cart icon" />
     </a>
+  </div>
+
+  <div id="search-box" class="hidden">
+    <input type="text" placeholder="Search..." />
   </div>
 
   <div id="cart-popup" class="cart-popup hidden">
@@ -60,6 +64,22 @@
     const cartPopup = document.getElementById("cart-popup");
     const closeBtn = document.getElementById("close-cart");
     const cartItems = document.getElementById("cart-items");
+    const searchIcon = document.querySelector('.icons img[alt="Search icon"]');
+    const searchBox = document.getElementById("search-box");
+
+    // Search toggle
+    if (searchIcon && searchBox) {
+      searchIcon.addEventListener("click", (e) => {
+        e.preventDefault();
+        searchBox.classList.toggle("hidden");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!searchBox.contains(e.target) && !(e.target instanceof HTMLElement && e.target.matches('.icons img[alt="Search icon"]'))) {
+          searchBox.classList.add("hidden");
+        }
+      });
+    }
 
     const cart = [];
 
@@ -149,6 +169,14 @@
   .logo img {
     height: 70px;
     width: auto;
+    transition:
+      transform 0.2s ease,
+      filter 0.2s ease;
+  }
+
+  .logo img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.335));
   }
 
   .nav {
@@ -185,6 +213,14 @@
   .icons img {
     width: 25px;
     margin-left: 3rem;
+    transition:
+      transform 0.2s ease,
+      filter 0.2s ease;
+  }
+
+  .icons img:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 4px white);
   }
 
   .nav a::after {
@@ -264,6 +300,9 @@
       display: flex;
     }
 
+    .icons img {
+      margin-left: 1rem;
+    }
     .logo {
       position: absolute;
       left: 50%;
@@ -272,6 +311,11 @@
 
     .mobile-menu.active {
       display: flex;
+    }
+
+    div#search-box {
+      top: 80px;
+      right: 0rem;
     }
   }
 
@@ -314,5 +358,28 @@
 
   button:hover {
     color: rgb(73, 72, 72);
+  }
+
+  #search-box {
+    position: absolute;
+    top: 33px;
+    right: 10rem;
+    background: white;
+    padding: 0.5rem;
+    padding-right: 4rem;
+    border: 0px solid #000000;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+  }
+
+  #search-box input {
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+  }
+
+  #search-box.hidden {
+    display: none;
   }
 </style>

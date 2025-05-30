@@ -1,0 +1,42 @@
+---
+// src/pages/development.astro (eller src/pages/features.astro)
+import BaseLayout from "../layout/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <section class="dev-container">
+    <h1>This site is still in development</h1>
+
+    <a href="/" class="back-button">← Back to Home</a>
+  </section>
+
+  <style>
+    .dev-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 80vh;
+      padding: 2rem;
+    }
+
+    .dev-container h1 {
+      font-size: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .back-button {
+      text-decoration: none;
+      color: rgb(0, 0, 0);
+
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .back-button:hover {
+      color: #666;
+    }
+  </style>
+</BaseLayout>
