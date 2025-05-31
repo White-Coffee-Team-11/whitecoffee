@@ -1,8 +1,5 @@
 ---
-export const prerender = false;
-
-const userAgent = Astro.request.headers.get("user-agent") || "";
-const isValidator = userAgent.includes("W3C_Validator");
+// export const prerender = false;
 
 import BaseLayout from "../../layout/BaseLayout.astro";
 import Alsolike from "../../components/Alsolike.astro";
@@ -21,8 +18,8 @@ const options = {
 const data = await fetch(url, options).then((res) => res.json());
 const product = data[0];
 ---
-{!isValidator && (
-<script is:inline>
+
+<script>
   let showingHover = false;
 
   window.addEventListener("DOMContentLoaded", () => {
@@ -41,7 +38,6 @@ const product = data[0];
     });
   });
 </script>
-)}
 
 <BaseLayout>
   {
