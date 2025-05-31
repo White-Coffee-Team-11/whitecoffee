@@ -40,16 +40,14 @@ const product = data[0];
   });
 </script>
 
-<head>
-  <title>{product ? `${product.name} | White Coffee` : "Produkt ikke fundet"}</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="/whitecoffeefav.svg" type="image/svg+xml" />
-  <script src="/src/scripts/menuToggle.js"></script>
-</head>
+<title>{product ? `${product.name} | White Coffee` : "Produkt ikke fundet"}</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/whitecoffeefav.svg" type="image/svg+xml" />
+<script src="/src/scripts/menuToggle.js"></script>
 
 <Header />
-<body>
+<section>
   {
     product ? (
       <section class="single-product">
@@ -92,11 +90,11 @@ const product = data[0];
     )
   }
   <Alsolike />
-</body>
+</section>
 <Footer />
 
 <style>
-  body {
+  section {
     margin: 0;
     padding: 0;
     font-family: "Helvetica", sans-serif;
