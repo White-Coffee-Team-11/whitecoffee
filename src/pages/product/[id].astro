@@ -1,7 +1,8 @@
 ---
-// export const prerender = false;
+export const prerender = false;
 
-import BaseLayout from "../../layout/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
 import Alsolike from "../../components/Alsolike.astro";
 
 const { params } = Astro;
@@ -19,7 +20,7 @@ const data = await fetch(url, options).then((res) => res.json());
 const product = data[0];
 ---
 
-<script>
+<script is:inline>
   let showingHover = false;
 
   window.addEventListener("DOMContentLoaded", () => {
@@ -39,7 +40,16 @@ const product = data[0];
   });
 </script>
 
-<BaseLayout>
+<head>
+  <title>{product ? `${product.name} | White Coffee` : "Produkt ikke fundet"}</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/whitecoffeefav.svg" type="image/svg+xml" />
+  <script src="/src/scripts/menuToggle.js"></script>
+</head>
+
+<Header />
+<body>
   {
     product ? (
       <section class="single-product">
@@ -81,11 +91,18 @@ const product = data[0];
       <p>Produkt ikke fundet</p>
     )
   }
-
   <Alsolike />
-</BaseLayout>
+</body>
+<Footer />
 
 <style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica", sans-serif;
+
+    box-sizing: border-box;
+  }
   .single-product {
     display: flex;
     gap: 4rem;
