@@ -4,9 +4,14 @@
 
 <section class="hero">
   <video class="hero-video" autoplay muted loop playsinline>
-    <source src="/video/AWAKENFINAL.mp4" type="video/mp4" />
+    <source src="/video/awaken-ny.mp4" type="video/mp4" />
   </video>
 </section>
+
+<!-- Mobile Video -->
+<video class="hero-video mobile-video" autoplay muted loop playsinline>
+  <source src="/video/awaken-mobile.mp4" type="video/mp4" />
+</video>
 
 <style>
   .hero {
@@ -23,5 +28,23 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .desktop-video {
+    display: block;
+  }
+
+  .mobile-video {
+    display: none;
+  }
+
+  @media (max-width: 800px) {
+    .desktop-video {
+      display: none;
+    }
+
+    .mobile-video {
+      display: block;
+    }
   }
 </style>
